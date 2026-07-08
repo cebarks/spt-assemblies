@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SPT.ReferenceAssemblies/SPT.ReferenceAssemblies.csproj" />
+    <Project Path="src/StubGenerator/StubGenerator.csproj" />
+  </Folder>
+</Solution>

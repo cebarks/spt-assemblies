@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <PackageId>SPT.ReferenceAssemblies</PackageId>
+    <Version>1.0.0-spt4.0.13</Version>
+    <Authors>cebarks</Authors>
+    <Description>Reference assemblies (type stubs) for building SPT mods without a game install</Description>
+    <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/cebarks/spt-assemblies</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cebarks/spt-assemblies</RepositoryUrl>
+    <NoWarn>$(NoWarn);CS0626;CS0108;CS0114</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Core" Version="5.*" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" ExcludeAssets="runtime" PrivateAssets="all">
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

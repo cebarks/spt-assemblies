@@ -5,26 +5,21 @@
     <PackageId>SPT.ReferenceAssemblies</PackageId>
     <Version>1.0.0-spt4.0.13</Version>
     <Authors>cebarks</Authors>
-    <Description>Reference assemblies (type stubs) for building SPT mods without a game install</Description>
+    <Description>Reference assemblies for building SPT mods without a game install</Description>
     <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
     <DevelopmentDependency>true</DevelopmentDependency>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/cebarks/spt-assemblies</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cebarks/spt-assemblies</RepositoryUrl>
-    <NoWarn>$(NoWarn);CS0626;CS0108;CS0114</NoWarn>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>latest</LangVersion>
+    <!-- ponytail: no compilation — this project only packages pre-built ref DLLs -->
+    <NoBuild>true</NoBuild>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="../../README.md" Pack="true" PackagePath="/" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="BepInEx.Core" Version="5.*" />
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" ExcludeAssets="runtime" PrivateAssets="all">
-      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <None Include="ref/net472/**/*.dll" Pack="true" PackagePath="ref/net472/" />
   </ItemGroup>
 
 </Project>

@@ -41,13 +41,14 @@ You'll still need BepInEx as a separate NuGet reference:
 <PackageReference Include="BepInEx.Core" Version="5.*" />
 ```
 
-Add the BepInEx NuGet feed to your `nuget.config`:
+Add the GitHub Packages and BepInEx NuGet feeds to your `nuget.config`:
 
 ```xml
 <configuration>
   <packageSources>
     <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
     <add key="BepInEx" value="https://nuget.bepinex.dev/v3/index.json" />
+    <add key="github-cebarks" value="https://nuget.pkg.github.com/cebarks/index.json" />
   </packageSources>
 </configuration>
 ```

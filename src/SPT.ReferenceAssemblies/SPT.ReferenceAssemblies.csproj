@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <None Include="../../README.md" Pack="true" PackagePath="/" />
-    <None Include="ref/net472/**/*.dll" Pack="true" PackagePath="ref/net472/" />
+    <None Include="ref/net472/**/*.dll" Exclude="ref/net472/0Harmony20.dll" Pack="true" PackagePath="ref/net472/" />
   </ItemGroup>
 
 </Project>

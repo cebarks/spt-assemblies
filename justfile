@@ -9,16 +9,16 @@ generate spt_path:
 
 # Build the solution
 build:
-    dotnet build
+    dotnet build src/StubGenerator
 
 # Pack the NuGet package with a specific version
 pack version:
     dotnet pack src/SPT.ReferenceAssemblies/SPT.ReferenceAssemblies.csproj -p:Version={{version}} -o ./nupkgs
 
-# Publish to NuGet.org (requires NUGET_API_KEY env var)
+# Publish to GitHub Packages (requires GH_TOKEN env var)
 publish version:
     just pack {{version}}
-    dotnet nuget push ./nupkgs/SPT.ReferenceAssemblies.{{version}}.nupkg --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY
+    dotnet nuget push ./nupkgs/SPT.ReferenceAssemblies.{{version}}.nupkg --source https://nuget.pkg.github.com/cebarks/index.json --api-key $GH_TOKEN
 
 # Clean build artifacts
 clean:

@@ -5,4 +5,3 @@ obj/
 .vs/
 *.nupkg
 nupkgs/
-src/SPT.ReferenceAssemblies/ref/

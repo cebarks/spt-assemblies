@@ -10,7 +10,6 @@ public static class AssemblyDiscovery
     private static readonly HashSet<string> SkipAssemblies = new(StringComparer.OrdinalIgnoreCase)
     {
         "Newtonsoft.Json",
-        "0Harmony",
         "BepInEx",
         "BepInEx.Preloader",
         "BepInEx.Harmony",
@@ -20,10 +19,16 @@ public static class AssemblyDiscovery
         "websocket-sharp",
         "LiteDB",
         "ICSharpCode.SharpZipLib",
+        // Output of the Where-Allocation Unity tool, picked up by the Managed glob. It is a
+        // test assembly (where-allocations.Tests), not a game dependency.
+        "where-allocations",
     };
 
     private static readonly string[] SkipPrefixes =
     {
+        // BepInEx ships Harmony as 0Harmony.dll, 0Harmony20.dll, 0Harmony4.dll ...; all of
+        // them duplicate types the consumer already gets from BepInEx.Core (CS0433).
+        "0Harmony",
         "System.",
         "Microsoft.",
         "Mono.",

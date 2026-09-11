@@ -30,7 +30,7 @@ This package replaces all those HintPath references with a single NuGet dependen
 Replace your `<Reference>` / `<HintPath>` blocks with:
 
 ```xml
-<PackageReference Include="SPT.ReferenceAssemblies" Version="1.0.0-spt4.0.13" PrivateAssets="all" />
+<PackageReference Include="SPT.ReferenceAssemblies" Version="1.0.1-spt4.1.3" PrivateAssets="all" />
 ```
 
 `PrivateAssets="all"` ensures the reference assemblies are compile-only — at runtime, the real DLLs are loaded by the game.
@@ -57,7 +57,7 @@ Add the GitHub Packages and BepInEx NuGet feeds to your `nuget.config`:
 
 Package versions use a pre-release suffix to indicate the SPT version:
 
-- `1.0.0-spt4.0.13` — reference assemblies from SPT 4.0.13
+- `1.0.1-spt4.1.3` — reference assemblies from SPT 4.1.3
 
 ## Regenerating reference assemblies
 
@@ -66,6 +66,10 @@ If you need to update for a new SPT version:
 1. Install [just](https://just.systems/) and [Refasmer](https://github.com/AskDante/Refasmer): `dotnet tool install --global JetBrains.Refasmer.CliTool`
 2. Run: `just generate ~/path/to/spt-install`
 3. Review the diff, commit, tag, push
+
+The generated `ref/` assemblies are committed, not ignored: `publish.yml` packs from a plain
+checkout, so an untracked `ref/` directory produces a package with zero reference assemblies
+(and `dotnet pack` still exits 0).
 
 ## License
 

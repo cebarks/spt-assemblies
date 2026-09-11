@@ -21,5 +21,20 @@ jobs:
           REF_NAME: ${{ github.ref_name }}
         run: echo "version=${REF_NAME#v}" >> "$GITHUB_OUTPUT"
       - run: dotnet restore
+      # ref/net472 is tracked source: without it the package silently packs zero reference
+      # assemblies and `dotnet pack` still reports success (a 3 KB nupkg). Fail the run instead.
+      - name: Assert reference assemblies are present
+        run: |
+          dir=src/SPT.ReferenceAssemblies/ref/net472
+          count=$(find "$dir" -maxdepth 1 -name '*.dll' | wc -l)
+          echo "found $count reference assemblies"
+          test "$count" -gt 100
       - run: dotnet pack src/SPT.ReferenceAssemblies/SPT.ReferenceAssemblies.csproj -p:Version=${{ steps.version.outputs.version }} -o ./nupkgs
+      - name: Assert package contains reference assemblies
+        run: |
+          pkg=$(find ./nupkgs -maxdepth 1 -name '*.nupkg' | head -1)
+          unzip -l "$pkg" | grep -q 'ref/net472/Assembly-CSharp.dll'
+          unzip -l "$pkg" | grep -q 'ref/net472/UnityEngine.CoreModule.dll'
+          if unzip -l "$pkg" | grep -qi '0Harmony'; then echo 'error: 0Harmony leaked into package'; exit 1; fi
+          echo "packed $(find ./nupkgs -maxdepth 1 -name '*.nupkg' -printf '%s bytes\n')"
       - run: dotnet nuget push ./nupkgs/*.nupkg --source https://nuget.pkg.github.com/cebarks/index.json --api-key ${{ secrets.GITHUB_TOKEN }}

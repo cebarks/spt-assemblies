@@ -1,0 +1,5 @@
+# Reference assemblies are generated, opaque binaries: never text-diff, never line-merge.
+*.dll binary
+
+# Collapse the generated payload in GitHub's PR file view and mark it generated.
+src/SPT.ReferenceAssemblies/ref/** linguist-generated=true -diff

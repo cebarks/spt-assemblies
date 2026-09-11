@@ -13,6 +13,7 @@ build:
 
 # Pack the NuGet package with a specific version
 pack version:
+    rm -f src/SPT.ReferenceAssemblies/obj/Release/SPT.ReferenceAssemblies.{{version}}.nuspec
     dotnet pack src/SPT.ReferenceAssemblies/SPT.ReferenceAssemblies.csproj -p:Version={{version}} -o ./nupkgs
 
 # Publish to GitHub Packages (requires GH_TOKEN env var)

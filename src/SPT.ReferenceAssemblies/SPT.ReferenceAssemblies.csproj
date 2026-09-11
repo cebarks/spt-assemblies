@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <PackageId>SPT.ReferenceAssemblies</PackageId>
-    <Version>1.0.0-spt4.0.13</Version>
+    <Version>1.0.1-spt4.1.3</Version>
     <Authors>cebarks</Authors>
     <Description>Reference assemblies for building SPT mods without a game install</Description>
     <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
